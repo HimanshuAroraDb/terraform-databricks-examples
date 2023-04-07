@@ -1,4 +1,4 @@
-# Azure Databricks Unity Catalog Implementation
+# Azure Databricks End to End Unity Catalog Implementation
 
 This Terraform project is deploying all the resources needed to properly setup unity catalog for azure databricks governance. We are essentially deploying all the resources shown in the diagram below:
 
@@ -30,7 +30,7 @@ Before running the terraform commands, replace the following placeholders in `te
 
 And you might have different AAD group names than the ones used in this example. Therefore, please also change value for `aad_groups` variable in `terraform.tfvars` file. _Make sure you create the desired user groups and add user/service principal members to them in AAD before running this template._
 
-_Note:_ We have used `account_unity_admin` group as metastore admin, workspace admin and owner of unity catalog objects. It would be better that you create an AAD group with the same name for admins. Otherwise, you would need to update the `main.tf` files as they use this group name as filter value while applying the permissions and ownerships.
+_Note:_ We have used `account_unity_admin` group as metastore admin, workspace admin and owner of unity catalog objects. It would be better that you create an AAD group with the same name for admins. Otherwise, you would need to update the `main.tf` files as they use this group name as filter value while applying the permissions and ownerships. Similarly, `data_engineer`, `data_analyst`, and `data_scientist` AAD group names are also used in the `main.tf` file at root level to grant permissions to catalog and schema, so if you use different AAD group names then don't forget to make changes in the template accordingly. 
 
 And now you can run the following terraform command to deploy unity catalog setup:
 
